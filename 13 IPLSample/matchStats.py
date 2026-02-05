@@ -74,13 +74,13 @@ def getCities():
     return list(listCity)
 
 def readCSVFile():
-    print 'in readCSV'
+    print('in readCSV')
     with open(r'.\matches.csv') as csvfile:
         allDataFile = csv.DictReader(csvfile)
     return allDataFile
 
 def showTeams():
-    print '====TEAM===='
+    print('====TEAM====')
     listTeam = ['Mumbai Indians','Chennai Super Kings','Kolkata Knight Riders','Delhi Daredevils','Gujarat Lions','Sunrisers Hyderabad','Kings XI Punjab','Royal Challengers Bangalore','Rajasthan Royals','Rising Pune Supergiants']
     dictTeam = dict(enumerate(listTeam,1))
     value = True
@@ -91,14 +91,14 @@ def showTeams():
         if validTeam:
             value = False
         else:
-            print 'Invalid Team Choice'
+            print('Invalid Team Choice')
     return dictTeam[team]
 
 
 
 def printTeam(dictTeam):
     for keys,Teams in dictTeam.items():
-        print "%s. %s"%(keys,Teams)
+        print("%s. %s"%(keys,Teams))
 
 def isValidTeam(team,dictTeam):
     if team in dictTeam.keys():
