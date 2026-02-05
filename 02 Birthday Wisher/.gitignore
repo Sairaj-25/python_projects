@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+env/
+.venv/
+
+
+# Ignore specific python files
+main.py
+Birthday_wish.py
