@@ -3,8 +3,8 @@ import pandas as pd
 import requests
 from PIL import Image
 from io import BytesIO
-from rapidfuzz import process, fuzz
-from tqdm import tqdm
+from rapidfuzz import process, fuzz # pyright: ignore[reportMissingImports]
+from tqdm import tqdm # pyright: ignore[reportMissingModuleSource]
 
 # ==========================================
 # CONFIG
