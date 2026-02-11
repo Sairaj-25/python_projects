@@ -38,7 +38,6 @@ bb_df.columns = bb_df.columns.str.strip().str.lower()
 required_shop_cols = {"name", "image"}
 required_bb_cols = {"productname", "image_url"}
 
-
 # Normalize names for matching
 shop_df["name"] = shop_df["name"].astype(str).str.strip().str.lower()
 bb_df["productname"] = bb_df["productname"].astype(str).str.strip().str.lower()
@@ -94,7 +93,7 @@ def download_and_resize(image_url, save_path):
         return True
 
     except Exception as e:
-        print(f"❌ Failed: {e}")
+        print(f"❌ Download Failed: {image_url} | Error: {e}")
         return False
 
 
@@ -107,6 +106,9 @@ print("🔎 Matching & Downloading Images...")
 success_count = 0
 failed_count = 0
 skipped_count = 0
+
+unmatched_products = []
+download_failed_products = []
 
 for _, row in tqdm(shop_df.iterrows(), total=len(shop_df)):
 
@@ -128,6 +130,7 @@ for _, row in tqdm(shop_df.iterrows(), total=len(shop_df)):
 
     if index is None or score < MIN_MATCH_SCORE:
         print(f"⚠ No good match for: {shop_name} (score: {score})")
+        unmatched_products.append(shop_name)
         failed_count += 1
         continue
 
@@ -135,6 +138,7 @@ for _, row in tqdm(shop_df.iterrows(), total=len(shop_df)):
 
     if pd.isna(image_url) or not str(image_url).strip():
         print(f"⚠ No image URL for: {shop_name}")
+        unmatched_products.append(shop_name)
         failed_count += 1
         continue
 
@@ -151,7 +155,25 @@ for _, row in tqdm(shop_df.iterrows(), total=len(shop_df)):
     if success:
         success_count += 1
     else:
+        download_failed_products.append(shop_name)
         failed_count += 1
+
+
+# ==========================================
+# SAVE REPORTS
+# ==========================================
+
+if unmatched_products:
+    pd.DataFrame({
+        "unmatched_product": unmatched_products
+    }).to_csv("unmatched_product.csv", index=False)
+    print("📄 unmatched_product.csv created")
+
+if download_failed_products:
+    pd.DataFrame({
+        "download_failed_product": download_failed_products
+    }).to_csv("download_failed.csv", index=False)
+    print("📄 download_failed.csv created")
 
 
 # ==========================================
