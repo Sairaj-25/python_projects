@@ -6,9 +6,9 @@ from io import BytesIO
 from rapidfuzz import process, fuzz # pyright: ignore[reportMissingImports]
 from tqdm import tqdm # pyright: ignore[reportMissingModuleSource]
 
-# ==========================================
+
 # CONFIG
-# ==========================================
+
 
 SHOP_CSV = "shop_product.csv"
 BIGBASKET_CSV = "BigBasket.csv"
@@ -22,11 +22,11 @@ TIMEOUT = 15
 
 os.makedirs(MEDIA_FOLDER, exist_ok=True)
 
-# ==========================================
-# LOAD CSV FILES
-# ==========================================
 
-print("📂 Loading CSV files...")
+# LOAD CSV FILES
+
+
+print("Loading CSV files...")
 
 shop_df = pd.read_csv(SHOP_CSV)
 bb_df = pd.read_csv(BIGBASKET_CSV)
@@ -42,9 +42,9 @@ required_bb_cols = {"productname", "image_url"}
 shop_df["name"] = shop_df["name"].astype(str).str.strip().str.lower()
 bb_df["productname"] = bb_df["productname"].astype(str).str.strip().str.lower()
 
-# ==========================================
+ 
 # MATCHING FUNCTION
-# ==========================================
+ 
 
 def find_best_match(shop_name):
     # 1️⃣ Exact match
@@ -72,9 +72,9 @@ def find_best_match(shop_name):
     return None, 0
 
 
-# ==========================================
+
 # DOWNLOAD FUNCTION
-# ==========================================
+
 
 def download_and_resize(image_url, save_path):
     try:
@@ -93,13 +93,13 @@ def download_and_resize(image_url, save_path):
         return True
 
     except Exception as e:
-        print(f"❌ Download Failed: {image_url} | Error: {e}")
+        print(f"Download Failed: {image_url} | Error: {e}")
         return False
 
 
-# ==========================================
+
 # MAIN PROCESS
-# ==========================================
+
 
 print("🔎 Matching & Downloading Images...")
 
@@ -148,7 +148,7 @@ for _, row in tqdm(shop_df.iterrows(), total=len(shop_df)):
     if image_url.startswith("/"):
         image_url = BASE_URL + image_url
 
-    print(f"📥 Downloading: {shop_name} (score: {score})")
+    print(f"Downloading: {shop_name} (score: {score})")
 
     success = download_and_resize(image_url, final_path)
 
@@ -159,28 +159,28 @@ for _, row in tqdm(shop_df.iterrows(), total=len(shop_df)):
         failed_count += 1
 
 
-# ==========================================
+
 # SAVE REPORTS
-# ==========================================
+
 
 if unmatched_products:
     pd.DataFrame({
         "unmatched_product": unmatched_products
     }).to_csv("unmatched_product.csv", index=False)
-    print("📄 unmatched_product.csv created")
+    print("unmatched_product.csv created")
 
 if download_failed_products:
     pd.DataFrame({
         "download_failed_product": download_failed_products
     }).to_csv("download_failed.csv", index=False)
-    print("📄 download_failed.csv created")
+    print("download_failed.csv created")
 
 
-# ==========================================
+
 # SUMMARY
-# ==========================================
 
-print("\n🎉 PROCESS COMPLETED")
-print(f"✅ Success: {success_count}")
-print(f"⚠ Failed: {failed_count}")
-print(f"⏭ Skipped: {skipped_count}")
+
+print("\nPROCESS COMPLETED")
+print(f"Success: {success_count}")
+print(f"Failed: {failed_count}")
+print(f"Skipped: {skipped_count}")
