@@ -15,7 +15,7 @@ MEDIA_FOLDER = "media/products"
 BASE_URL = "https://www.bigbasket.com"
 
 RESIZE_SIZE = (300, 300)
-MIN_MATCH_SCORE = 80
+MIN_MATCH_SCORE = 90
 TIMEOUT = 15
 MAX_IMAGES_PER_PRODUCT = 5
 
