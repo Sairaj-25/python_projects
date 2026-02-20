@@ -64,11 +64,11 @@ def is_resource_sufficient(order_ingredients):
     return is_enough
 
 while is_on:
-    choice = input("what would you like? (espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
+    choice = input("what would you like? (tea/espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
 
     while choice not in MENU and choice not in ["off", "report"]:
         print("Incorrect input, please try again!")
-        choice = input("What would you like? (espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
+        choice = input("What would you like? (tea/espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
     
     if choice == "off":
         is_on = False
