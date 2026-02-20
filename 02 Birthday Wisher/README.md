@@ -26,6 +26,8 @@ It uses Python’s built-in libraries and SMTP for email delivery.
 ---
 
 ## 📁 Project Structure
+
+```
 Birthday Wisher/
 ├── Birthday_Bot.py
 ├── birthdays.csv
@@ -33,7 +35,7 @@ Birthday Wisher/
 ├── quotes.txt
 ├── requirements.txt
 └── README.md
-
+```
 
 ---
 
