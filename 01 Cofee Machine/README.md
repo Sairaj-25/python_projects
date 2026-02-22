@@ -17,7 +17,7 @@ It is designed to practice core Python concepts such as:
 
 The Coffee Machine program allows users to:
 
-- ☕ Order drinks (Espresso, Latte, Cappuccino)
+- ☕ Order drinks (Tea,Coffee, Espresso, Latte, Cappuccino)
 - 💰 Insert coins and process payments
 - 📊 View current machine resources
 - 🔄 Continue ordering until turned off
@@ -41,5 +41,3 @@ The program ensures:
 ✔ Graceful exit option  
 
 ---
-
-## 🗂 Project Structure
