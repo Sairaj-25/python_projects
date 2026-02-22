@@ -26,11 +26,38 @@ The project logic is split into four main files to adhere to OOP best practices:
 
 ## 🚀 How to Run
 
-### Prerequisites
-This game uses the `turtle` module, which comes pre-installed with standard Python. You do not need to install any external libraries from the `requirements.txt` to run this specific game.
+### ✅ Prerequisites
 
-1. Ensure you have **Python 3.x** installed on your machine.
-2. Clone this repository to your local machine.
-3. Open your terminal or command prompt and navigate to the project directory:
-   ```bash
-   cd path/to/03-Snake-Game
+- Python 3.x installed on your machine  
+- `turtle` module (comes pre-installed with Python)
+
+### ▶️ Steps
+
+**Clone the repository**
+
+**bash**
+git clone https://github.com/Sairaj-25/python_projects.git
+
+
+
+## 🎮 Controls
+
+⬆️ Up Arrow – Move Up
+
+⬇️ Down Arrow – Move Down
+
+⬅️ Left Arrow – Move Left
+
+➡️ Right Arrow – Move Right
+
+## 🧠 Concepts Practiced
+
+**Object-Oriented Programming (OOP)**
+
+**Class Separation & Modular Design**
+
+**Event Listeners**
+
+**Real-time Game Loop**
+
+**Collision Detection Logic**
