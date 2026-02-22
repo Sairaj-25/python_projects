@@ -44,12 +44,12 @@ MENU = {
     }
 }
 
-profit = 0
+total_amount = 0
 available_resources = {
-    "water": 1000,
-    "milk": 500,
-    "coffee": 100,
-    "sugar": 200,
+    "water": 2000,
+    "milk": 1000,
+    "coffee": 200,
+    "sugar": 400,
 }
 
 is_on = True
@@ -64,11 +64,11 @@ def is_resource_sufficient(order_ingredients):
     return is_enough
 
 while is_on:
-    choice = input("what would you like? (tea/espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
+    choice = input("what would you like? (tea/coffee/espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
 
     while choice not in MENU and choice not in ["off", "report"]:
         print("Incorrect input, please try again!")
-        choice = input("What would you like? (tea/espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
+        choice = input("What would you like? (tea/coffee/espresso/latte/cappuccino) || buttons? (off/report): ").lower().strip()
     
     if choice == "off":
         is_on = False
@@ -83,13 +83,14 @@ while is_on:
         if is_resource_sufficient(drink["ingredients"]):
             payment = drink["cost"]
             print(f"Cost of {choice}:", "$", payment)
-
+            
             for item in drink["ingredients"]:
                 available_resources[item] -= drink["ingredients"][item]
 
-            profit += payment
-            print("Total amount to be paid:", "$", profit)
             print("Here is your drink. Enjoy!")
+            total_amount += payment
+            print("Total collection of the day:", "$", total_amount)
+            
         else:
             print("Not enough available_resources to make your drink.")
             print(available_resources)
