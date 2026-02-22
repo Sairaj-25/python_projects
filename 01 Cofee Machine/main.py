@@ -75,7 +75,10 @@ while is_on:
         print("Coffee Machine is turned off !")
 
     elif choice == "report":
-        print(available_resources)
+        # print(available_resources.items())
+        print("Available Resources:")
+        for item, amount in available_resources.items():
+            print(f"{item}: {amount}")
         
     elif choice in MENU:
         drink = MENU[choice]
