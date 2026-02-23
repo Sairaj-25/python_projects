@@ -35,8 +35,7 @@ The project logic is split into four main files to adhere to OOP best practices:
 
 **Clone the repository**
 
-**bash**
-git clone https://github.com/Sairaj-25/python_projects.git
+https://github.com/Sairaj-25/python_projects.git
 
 
 
