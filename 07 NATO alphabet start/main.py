@@ -1,6 +1,12 @@
+from pathlib import Path
 import pandas
 
-data = pandas.read_csv(r"D:\python code Udemy\python\NATO-alphabet-start\nato_phonetic_alphabet.csv")
+BASE_DIR = Path(__file__).resolve().parent
+file_path = BASE_DIR/"nato_phonetic_alphabet.csv"
+
+data = pandas.read_csv(file_path)
+
+# data = pandas.read_csv(r"D:\python code Udemy\python\NATO-alphabet-start\nato_phonetic_alphabet.csv")
 
 # Keyword Method with iterrows()
 # {new_key:new_value for (index, row) in df.iterrows()}
