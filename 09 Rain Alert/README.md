@@ -46,5 +46,4 @@ This project demonstrates:
 
 - Add retry mechanism for failed API calls
 
-
 ---
