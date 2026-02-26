@@ -1,7 +1,7 @@
 from pathlib import Path
 from PIL import Image
 import logging
-import os
+
 
 # config
 
@@ -10,12 +10,12 @@ INPUT_DIR = BASE_DIR/"input_images"
 OUTPUT_DIR = BASE_DIR/"optimized_images"
 
 
-SUPPORTED_FORMATS = (".jpg", ".jpeg", ".png")
+SUPPORTED_FORMATS = (".jpg", ".jpeg", ".png", ".webp")
 
 # Ecommerce image sizes for production
 
 SIZES = {
-    "thumbanail": (150, 150),
+    "thumbnail": (150, 150),
     "medium": (500, 500),
     "large": (1000, 1000),
 }
@@ -69,9 +69,11 @@ def process_image(image_path: Path):
                 )
 
             logging.info(f"Processed: {image_path.name}")
+            return True
 
     except Exception as e:
         logging.error(f"Failed processing {image_path.name}: {e}")
+        return False
 
 
 def run_pipeline():
@@ -79,12 +81,35 @@ def run_pipeline():
         print("Input folder not found")
         return
 
-    for image_path in INPUT_DIR.rglob("*"):
-        if image_path.suffix.lower() in SUPPORTED_FORMATS:
-            if validate_image(image_path):
-                process_image(image_path)
+    total_files = 0
+    total_supported = 0
+    total_success = 0
+    total_failed = 0
 
-    print("image pipeline completed")
+    for image_path in INPUT_DIR.rglob("*"):
+        if image_path.is_file():
+            total_files += 1
+
+            if image_path.suffix.lower() in SUPPORTED_FORMATS:
+                total_supported += 1
+
+                if validate_image(image_path):
+                    if process_image(image_path):
+                        total_success += 1
+                    else:
+                        total_failed +=1
+                else:
+                    total_failed += 1
+
+
+
+    print("Image pipeline completed")
+    print("\nImage Pipeline Report")
+    print("----------------------")
+    print("Total files found:", total_files)
+    print("Supported images:", total_supported)
+    print("Successfully processed:", total_success)
+    print("Failed:", total_failed)
 
 
 if __name__ == "__main__":
