@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🔐 Secure Password Manager (Tkinter GUI)
 
 A professional desktop-based **Password Manager** built using Python and Tkinter.
@@ -171,6 +170,4 @@ GitHub: https://github.com/Sairaj-25
 
 
 ---
-=======
 
->>>>>>> bc99efbceb55c2bcb0856db2773434fe58f30a0f
